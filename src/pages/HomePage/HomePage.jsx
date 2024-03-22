@@ -1,12 +1,12 @@
-import { Button } from '@chakra-ui/react';
-// import React from 'react';
+import { Container } from "@chakra-ui/react";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const HomePage = () => {
-  return (
-    <>
-    <Button>HomePage</Button>
-    </>
-  )
-}
+	return (
+		<Container maxW={"100%"}>
+          <Sidebar/>
+		</Container>
+	);
+};
 
-export default HomePage
+export default HomePage;
