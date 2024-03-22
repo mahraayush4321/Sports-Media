@@ -21,9 +21,8 @@ const Navbar = () => {
       >
         <Link to="/">
         <Image
-        mr={20}
           src="/logo.png"
-          h={20}
+          boxSize='50px'
           display= "block"
           cursor={"pointer"}
         />

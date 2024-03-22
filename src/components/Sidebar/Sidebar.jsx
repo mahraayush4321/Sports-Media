@@ -12,7 +12,7 @@ const Sidebar = () => {
 		<Navbar maxW={"100%"}/>
 		
 			{/* <Flex direction={{base:"column", md:"row"}} gap={10} w='full' height={"full"}> */}
-				<Flex direction={{base:"row", md:"column", lg:"column"}} pos={{base:"fixed"}} bottom={{base:"0", md:"auto", lg:"auto"}} gap={5} cursor={"pointer"} w='200px'>
+				<Flex gap={5} mt={10} direction={{base:"row", md:"column", lg:"column"}} pos={{base:"fixed"}} bottom={{base:"0", md:"auto", lg:"auto"}} cursor={"pointer"} w='200px'>
 				<Home />
 			<Search />
 			<Tournament />
