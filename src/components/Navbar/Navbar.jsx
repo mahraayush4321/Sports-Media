@@ -25,6 +25,7 @@ const Navbar = () => {
           boxSize='50px'
           display= "block"
           cursor={"pointer"}
+          ml={{base: '-3', sm: '0'}}
         />
         </Link>
         <Flex gap={4}>
@@ -48,7 +49,7 @@ const Navbar = () => {
               </Button>
             </InputRightAddon>
           </InputGroup>
-          <Link to="/auth">
+          <Link to="/register">
             <Button colorScheme={"blue"} size={"sm"}>
               Login
             </Button>

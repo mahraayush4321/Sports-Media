@@ -13,6 +13,9 @@ const styles = {
 			bg: mode("gray.100", "#121212")(props),
 			// rgb(15 23 42)
 			color: mode("gray.800", "whiteAlpha.900")(props),
+			// bg: mode("gray.100", "whiteAlpha.900")(props),
+			// // rgb(15 23 42)
+			// color: mode("gray.100", "#121212")(props),
 		},
 	}),
 };
