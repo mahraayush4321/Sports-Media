@@ -12,19 +12,13 @@ const CraetePostPage = () => {
     <div className="flex">
       <Sidebar />
       <Center h="80vh">
-    <Box maxW="md" bg={"black"} border={"1px solid gray"}  rounded="lg" p={6}>
+    <Box maxW="md" bg={"black"} border={"1px solid gray"} mt={10}  rounded="lg" p={6}>
     <Input
               type="file"
               id="avatar"
               name="avatar"
               pt={1}
               accept="image/png, image/jpeg"
-            />
-            <Input
-              placeholder="Select Date and Time"
-              size="md"
-              type="datetime-local"
-              mt={5}
             />
             <Input placeholder="Pin Code" mt={5} />
 

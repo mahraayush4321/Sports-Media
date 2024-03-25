@@ -60,12 +60,6 @@ const CreatePost = () => {
               pt={1}
               accept="image/png, image/jpeg"
             />
-            <Input
-              placeholder="Select Date and Time"
-              size="md"
-              type="datetime-local"
-              mt={5}
-            />
             <Input placeholder="Pin Code" mt={5} />
 
             <Input placeholder="Title" mt={5} />
