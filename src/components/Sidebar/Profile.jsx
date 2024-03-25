@@ -13,7 +13,7 @@ const ProfileLink = () => {
 		>
 			<Link
 				display={"flex"}
-				to="/"
+				to="/profile"
 				as={RouterLink}
 				alignItems={"center"}
 				gap={4}

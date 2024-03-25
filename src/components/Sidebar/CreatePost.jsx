@@ -1,28 +1,30 @@
 import {
   Box,
-  Button,
+  // Button,
   Flex,
-  Input,
-  Textarea,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  // Input,
+  // Textarea,
+  // Modal,
+  // ModalBody,
+  // ModalCloseButton,
+  // ModalContent,
+  // ModalFooter,
+  // ModalHeader,
+  // ModalOverlay,
   Tooltip,
-  useDisclosure,
+  // useDisclosure,
   Icon,
-  Select,
+  // Select,
 } from "@chakra-ui/react";
 import { CiSquarePlus } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const CreatePost = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
+        <Link to="/createPost">
       <Tooltip
         hasArrow
         label={"Create"}
@@ -40,13 +42,14 @@ const CreatePost = () => {
           w={{ base: 10, md: "full" }}
           justifyContent={{ base: "center", md: "flex-start" }}
         >
-          <Icon as={CiSquarePlus} boxSize={6} onClick={onOpen}/>
-          <Box onClick={onOpen} display={{ base: "none", md: "block" }}>
+          <Icon as={CiSquarePlus} boxSize={6}/>
+          <Box display={{ base: "none", md: "block" }}>
             Create
           </Box>
         </Flex>
       </Tooltip>
-      <Modal isOpen={isOpen} onClose={onClose} size="xl">
+          </Link>
+      {/* <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
 
         <ModalContent bg={"black"} border={"1px solid gray"}>
@@ -78,7 +81,7 @@ const CreatePost = () => {
             <Button mr={3}>Post</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

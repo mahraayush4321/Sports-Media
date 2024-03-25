@@ -3,26 +3,29 @@ import { Flex } from "@chakra-ui/react";
 import CreatePost from "./CreatePost";
 import Home from "./Home";
 import Profile from "./Profile";
-import Search from "./Search";
 import Tournament from "./Tournament";
+import Chat from "./Chat";
 
 const Sidebar = () => {
-	return (
-		<>
-		{/* <Navbar maxW={"100%"}/> */}
-		
-			{/* <Flex direction={{base:"column", md:"row"}} gap={10} w='full' height={"full"}> */}
-				<Flex gap={{base:'9', sm:'5'}} mt={14} direction={{base:"row", md:"column", lg:"column"}} pos={{base:"fixed"}} bottom={{base:"0", md:"auto", lg:"auto"}} cursor={"pointer"} w='200px'>
-				<Home />
-			<Search />
-			<Tournament />
-			<CreatePost />
-			<Profile />
-				</Flex>
-			{/* </Flex> */}
-		
-		</>
-	);
+  return (
+    <>
+      <Flex
+        gap={{ base: "9", sm: "5" }}
+        mt={14}
+        direction={{ base: "row", md: "column", lg: "column" }}
+        pos={{ base: "fixed" }}
+        bottom={{ base: "0", md: "auto", lg: "auto" }}
+        cursor={"pointer"}
+        w="200px"
+      >
+        <Home />
+        <Chat />
+        <Tournament />
+        <CreatePost />
+        <Profile />
+      </Flex>
+    </>
+  );
 };
 
 export default Sidebar;

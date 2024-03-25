@@ -1,8 +1,10 @@
 import { Box, Flex, Tooltip, Icon } from "@chakra-ui/react";
 import { TbTournament } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const Tournament = () => {
 	return (
+		<Link to="/tournament">
 		<Tooltip
 			hasArrow
 			label={"Notifications"}
@@ -20,10 +22,12 @@ const Tournament = () => {
 				w={{ base: 10, md: "full" }}
 				justifyContent={{ base: "center", md: "flex-start" }}
 			>
+					
 				<Icon as={TbTournament} boxSize={6} />
 				<Box display={{ base: "none", md: "block" }}>Tournament</Box>
 			</Flex>
 		</Tooltip>
+				</Link>
 	);
 };
 

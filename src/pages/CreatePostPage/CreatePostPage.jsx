@@ -1,15 +1,11 @@
-// import React from 'react'
 import Sidebar from "../../components/Sidebar/Sidebar";
-// import Navbar from "../../components/Navbar/Navbar";
 import Nav from "../../components/Navbar/Nav";
 import {Textarea,Select, Input, Button, Box, Center } from "@chakra-ui/react";
-const CraetePostPage = () => {
+const CreatePostPage = () => {
   return (
     <>
-    {/* <Navbar/> */}
     <Nav />
-
-    <div className="flex">
+    <>
       <Sidebar />
       <Center h="80vh">
     <Box maxW="md" bg={"black"} border={"1px solid gray"} mt={10}  rounded="lg" p={6}>
@@ -37,9 +33,9 @@ const CraetePostPage = () => {
       </Box>
     </Box>
   </Center>
-    </div>
+    </>
   </>
   )
 }
 
-export default CraetePostPage
+export default CreatePostPage

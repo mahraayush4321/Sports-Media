@@ -3,7 +3,7 @@ import { Box, Text, Image, Wrap, WrapItem } from '@chakra-ui/react';
 // eslint-disable-next-line react/prop-types
 const Card = ({ title, imageUrl, description }) => {
   return (
-    <Box maxW="xs" borderWidth="1px" borderRadius="lg" mt={20} zIndex={10} overflow="hidden">
+    <Box maxW="xs" borderWidth="1px" borderRadius="lg" mt={24} zIndex={10} overflow="hidden">
       <Image src={imageUrl} alt={title} />
 
       <Box p="6">   

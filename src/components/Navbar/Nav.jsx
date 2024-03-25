@@ -1,10 +1,21 @@
 // import React from 'react';
-import { Box, Flex, Input, Button, Image, Container } from '@chakra-ui/react';
+import {
+  Button,
+  Container,
+  Flex,
+  Image,
+  Input,
+  InputGroup,
+  InputRightAddon,
+  Icon,
+  Box,
+} from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
+import { Search2Icon } from "@chakra-ui/icons";
 
 const Nav = () => {
   return (
-    <Box top={0} left={0} right={0} zIndex={-2} boxShadow="md">
+    <Box position="fixed" top={0} left={0} right={0} zIndex={0} boxShadow="md">
     <Container maxW={"100%"}>
 
     <Flex
@@ -18,19 +29,32 @@ const Nav = () => {
       color="white"
       >
       {/* Logo */}
+      <Link to="/">
       <Box>
         <Image src="/logo.png" alt="Logo" boxSize="50px" mr={12} />
       </Box>
+      </Link>
 
       {/* Search Input */}
+      <Flex gap={{base: "5",lg:"35rem"}}>
+        <InputGroup>
       <Input
         type="text"
-        placeholder="Search..."
+        placeholder="Pin Code ..."
         variant="filled"
         size="md"
         maxWidth="300px"
-        mr="2"
         />
+
+            <InputRightAddon p={0} >
+              <Button
+                borderLeftRadius={0}
+                borderRightRadius={3.3}
+                >
+               <Icon as={Search2Icon} boxSize={4} />
+              </Button>
+            </InputRightAddon>
+          </InputGroup>
 
       {/* Login Button */}
       <Link to="/login">
@@ -38,6 +62,7 @@ const Nav = () => {
         Login
       </Button>
       </Link>
+                </Flex>
     </Flex>
     </Container>
         </Box>

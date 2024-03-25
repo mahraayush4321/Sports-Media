@@ -1,16 +1,16 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Nav from "../../components/Navbar/Nav";
 
-const TournamentPage = () => {
+const ChatPage = () => {
   return (
     <>
     <Nav />
     <>
       <Sidebar />
-      Tournaments will be organized here
+      Chats will be organized here
     </>
   </>
   )
 }
 
-export default TournamentPage
+export default ChatPage

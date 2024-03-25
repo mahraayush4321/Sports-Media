@@ -1,4 +1,4 @@
-import { HStack, Button, useBreakpointValue } from '@chakra-ui/react';
+import { HStack, Button, useBreakpointValue, Box } from '@chakra-ui/react';
 import { MdSportsCricket } from "react-icons/md";
 import { IoMdFootball } from "react-icons/io";
 import { FaVolleyballBall } from "react-icons/fa";
@@ -43,25 +43,26 @@ const Categories = () => {
 
 
     return (
-      <HStack spacing={2} overflowX="auto" ml={{ base: '-5', md: '60' }} my={5}>
-        {isDesktop &&
-          buttonList.map((buttonName, index) => (
-            <Button mt={10} key={index} bg="gray.800" fontWeight="medium" mx={2} px={2}>
-              {buttonName}
-            </Button>
-          ))}
-        {isMobile &&
-        iconList.map((IconComponent, index) => (
-           <Button Button key={index} bg="gray.800" mt={10} fontWeight="medium" mx={2} px={2}>
+      <Box position="fixed" top={{base:"0", md:"auto"}} left={{base:"0", md:"auto"}}  right={{base:"0", md:"auto"}}  zIndex={999}>
+  <HStack spacing={2} overflowX="auto" ml={{ base: '2', md: '60' }} my={5}>
+    {isDesktop &&
+      buttonList.map((buttonName, index) => (
+        <Button key={index} bg="gray.800" fontWeight="medium" mx={2} px={2} mt={6}>
+          {buttonName}
+        </Button>
+      ))}
+    {isMobile &&
+      iconList.map((IconComponent, index) => (
+        <Button key={index} bg="gray.800" fontWeight="medium" mx={2} px={2} mt={12}>
           <IconComponent
-            key={index}
             size={isDesktop ? 24 : 36}
             color="gray.800"
             display={isDesktop ? 'none' : 'block'}
           />
-          </Button>
-        ))}
-      </HStack>
+        </Button>
+      ))}
+  </HStack>
+</Box>
   )
 }
 

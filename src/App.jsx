@@ -5,7 +5,8 @@ import LoginForm from './components/Auth/LoginForm';
 import SignupForm from './components/Auth/SignipForm'
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import TournamentPage from './pages/TournamentPage/TournamentPage';
-import CraetePostPage from './pages/CreatePostPage/CraetePostPage';
+import CreatePostPage from './pages/CreatePostPage/CraetePostPage';
+import ChatPage from './pages/ChatPage/ChatPage';
 function App() {
 
   return (
@@ -16,10 +17,8 @@ function App() {
         <Route path='/login' element={<LoginForm/>}/>
         <Route path='/profile' element={<ProfilePage/>}/>
         <Route path='/tournament' element={<TournamentPage/>}/>
-        <Route path='/createPost' element={<CraetePostPage/>}/>
-
-
-
+        <Route path='/createPost' element={<CreatePostPage/>}/>
+        <Route path='/chat' element={<ChatPage/>}/>
 			</Routes>
     </>
   )

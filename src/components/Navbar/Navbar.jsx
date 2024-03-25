@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <Container maxW={"100%"}>
       <Flex
-      position="fix"
+      position="fixed"
         w={"full"}
         justifyContent={{ base: "center", sm: "space-between" }}
         alignItems={"center"}
@@ -58,6 +58,7 @@ const Navbar = () => {
         </Flex>
       </Flex>
     </Container>
+    
   );
 };
 
