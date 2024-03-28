@@ -13,7 +13,7 @@ const HomePage = () => {
     const fetchPosts = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:3001/api/v1/allPost'); // Adjust port as needed
+            const response = await fetch('http://localhost:3001/api/v1/allPost'); 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -78,7 +78,7 @@ function PostCard({ postData }) {
            {/* eslint-disable-next-line react/prop-types */}
           <p>Description: {postData.description}</p> 
            {/* eslint-disable-next-line react/prop-types */}
-          <p>Posted By: {postData.postedBy.firstName} {postData.postedBy.lastName}</p>
+          <p>Posted By: {postData.postedBy.firstName} {postData.postedBy.lastName} </p> 
            {/* eslint-disable-next-line react/prop-types */}
           <p>Sports: {postData.sports}</p>
            {/* eslint-disable-next-line react/prop-types */}
