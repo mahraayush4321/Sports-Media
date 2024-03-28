@@ -5,7 +5,7 @@ import LoginForm from './components/Auth/LoginForm';
 import SignupForm from './components/Auth/SignipForm'
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import TournamentPage from './pages/TournamentPage/TournamentPage';
-import CreatePostPage from './pages/CreatePostPage/CraetePostPage';
+import CreatePostPage from './pages/CreatePostPage/CreatePostPage';
 import ChatPage from './pages/ChatPage/ChatPage';
 function App() {
 
