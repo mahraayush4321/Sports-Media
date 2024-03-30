@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FormLabel, FormControl, Input, Button, Box, Center} from "@chakra-ui/react";
+import { FormLabel, FormControl, Input, Button, Box, Flex, VStack, Image} from "@chakra-ui/react";
 const SignupForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -62,10 +62,12 @@ const SignupForm = () => {
   };
 
   return (
-    <Center h="90vh">
-        <Box maxW="lg" bg="gray.600" rounded="lg" p={10}>
-
-    <Box maxW="md" bg="gray.800" rounded="lg" p={6}>
+    <Flex align="center" justify="center" minH="90vh">
+    <Box p="8 " borderWidth="1px" borderRadius="lg" boxShadow="md">
+      <Flex align="center" justify="space-between">
+        <Image src="/auth.png" alt="Login Image" boxSize="200px" w="25rem" h="35rem" mr="1" display={{base:"none", md:"inherit"}} />
+        <VStack align="stretch" spacing="8" ml={{base:"auto",md:"40"}} mr={{base:"auto",md:"20"}}  bg="gray.900" maxW="md" borderColor="blue" rounded="lg" p={{base:"6", md:"8"}}>
+    <Box maxW="md" rounded="lg" p={2}>
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
           <FormLabel htmlFor="firstName">First Name</FormLabel>
@@ -111,7 +113,7 @@ const SignupForm = () => {
             required
             />
         </FormControl>
-        <Button colorScheme="blue" type="submit">
+        <Button colorScheme="blue" type="submit" width={"80%"}>
           Submit
         </Button>
       </form>
@@ -122,8 +124,10 @@ const SignupForm = () => {
         </Link>
       </Box>
     </Box>
+  </VStack>
+              </Flex>
             </Box>
-  </Center>
+          </Flex>
   );
 };
 

@@ -43,8 +43,8 @@ const Categories = () => {
 
 
     return (
-      <Box position="fixed" top={{base:"0", md:"auto"}} left={{base:"0", md:"auto"}}  right={{base:"0", md:"auto"}}  zIndex={999}>
-  <HStack spacing={2} overflowX="auto" ml={{ base: '2', md: '60' }} my={5}>
+      <Box position="fixed" top={{base:"0", md:"3.5rem"}}  height={{base:"1rem", md:"auto"}} left={{base:"0", md:"8rem"}} width={{base:"auto", md:"80%"}} right={{base:"0", md:"auto"}}  zIndex={999}>
+  <HStack spacing={2} overflowX="auto" ml={{ base: '2', md: '60' }} my={10} height={{base:"6rem", md:"auto"}} marginTop={{base:"3rem" ,md:"auto"}} zIndex={999}>
     {isDesktop &&
       buttonList.map((buttonName, index) => (
         <Button key={index} bg="gray.800" fontWeight="medium" mx={2} px={2} mt={6}>
@@ -53,7 +53,7 @@ const Categories = () => {
       ))}
     {isMobile &&
       iconList.map((IconComponent, index) => (
-        <Button key={index} bg="gray.800" fontWeight="medium" mx={2} px={2} mt={12}>
+        <Button key={index} bg="gray.800" fontWeight="medium" mx={2} px={2} mt={5}>
           <IconComponent
             size={isDesktop ? 24 : 36}
             color="gray.800"

@@ -24,7 +24,7 @@ const Nav = () => {
       justify="space-between"
       padding="0.5rem"
       // mt={-5}
-      // bg="gray.900"
+      bg="gray.900"
       borderRadius={10}
       color="white"
       >

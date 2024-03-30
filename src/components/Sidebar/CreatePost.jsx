@@ -34,12 +34,14 @@ const CreatePost = () => {
         display={{ base: "block", md: "none" }}
       >
         <Flex
+						bg={{base:"black", md:"inherit"}}
+
           alignItems={"center"}
           gap={4}
           _hover={{ bg: "whiteAlpha.400" }}
           borderRadius={6}
           p={5}
-          w={{ base: 10, md: "full" }}
+          w={{ base: 20, md: "full" }}
           justifyContent={{ base: "center", md: "flex-start" }}
         >
           <Icon as={CiSquarePlus} boxSize={6}/>

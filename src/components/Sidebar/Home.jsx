@@ -13,6 +13,8 @@ const Home = () => {
 			display={{ base: "block", md: "none" }}
 		>
 			<Link
+						bg={{base:"black", md:"inherit"}}
+
 				display={"flex"}
 				to={"/"}
 				as={RouterLink}
@@ -21,7 +23,7 @@ const Home = () => {
 				_hover={{ bg: "whiteAlpha.400" }}
 				borderRadius={6}
 				p={5}
-				w={{ base: 10, md: "full" }}
+				w={{ base: 20, md: "full" }}
 				justifyContent={{ base: "center", md: "flex-start" }}
 			>
 				<Icon as={AiFillHome} boxSize={6} />

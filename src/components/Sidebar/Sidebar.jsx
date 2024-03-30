@@ -10,7 +10,8 @@ const Sidebar = () => {
   return (
     <>
       <Flex
-        gap={{ base: "9", sm: "5" }}
+        gap={{ base: "0.5", sm: "5" }}
+        ml={{base:-6, md:"2"}}
         mt={14}
         direction={{ base: "row", md: "column", lg: "column" }}
         pos={{ base: "fixed" }}

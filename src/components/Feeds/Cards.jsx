@@ -1,92 +1,26 @@
-import { Box, Text, Image, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Flex, Image, VStack, Input, Button, Text, Divider} from "@chakra-ui/react";
+import { FaGoogle } from 'react-icons/fa';
 
-// eslint-disable-next-line react/prop-types
-const Card = ({ title, imageUrl, description }) => {
+const LoginPage = () => {
   return (
-    <Box maxW="xs" borderWidth="1px" borderRadius="lg" mt={24} zIndex={10} overflow="hidden">
-      <Image src={imageUrl} alt={title} />
-
-      <Box p="6">   
-        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
-          {title}
-        </Box>
-
-        <Text mt="2" color="gray.600">
-          {description}
-        </Text>
+    <Flex align="center" justify="center" minH="90vh">
+      <Box w="80%" p="8 " borderWidth="1px" borderRadius="lg" boxShadow="md">
+        <Flex align="center" justify="space-between">
+          <Image src="/auth.png" alt="Login Image" boxSize="200px" w="25rem" h="35rem" mr="1" />
+          <VStack align="stretch" spacing="8" mr="40">
+            <Text fontSize="2xl" fontWeight="bold">Login</Text>
+            <Input placeholder="Email" size="md" />
+            <Input type="password" placeholder="Password" size="md" />
+            <Button colorScheme="blue" size="md" mb="4">Login</Button>
+            <Divider />
+            <Button leftIcon={<FaGoogle />} colorScheme="red" size="md" variant="outline">
+              Login with Google
+            </Button>
+          </VStack>
+        </Flex>
       </Box>
-    </Box>
+    </Flex>
   );
 };
 
-const Cards = () => {
-  return (
-    <Wrap spacing="8" ml={{base: '0', md:'28'}} justify="center">
-  <WrapItem>
-    <Card
-      title="Card 1"
-      imageUrl="https://via.placeholder.com/150"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec turpis ac lacus consequat lacinia."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 2"
-      imageUrl="https://via.placeholder.com/150"
-      description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 3"
-      imageUrl="https://via.placeholder.com/150"
-      description="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 1"
-      imageUrl="https://via.placeholder.com/150"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec turpis ac lacus consequat lacinia."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 2"
-      imageUrl="https://via.placeholder.com/150"
-      description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 3"
-      imageUrl="https://via.placeholder.com/150"
-      description="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 1"
-      imageUrl="https://via.placeholder.com/150"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec turpis ac lacus consequat lacinia."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 2"
-      imageUrl="https://via.placeholder.com/150"
-      description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-    />
-  </WrapItem>
-  <WrapItem>
-    <Card
-      title="Card 3"
-      imageUrl="https://via.placeholder.com/150"
-      description="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    />
-  </WrapItem>
-</Wrap>
-  );
-};
-
-export default Cards;
+export default LoginPage;

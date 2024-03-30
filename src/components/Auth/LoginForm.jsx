@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { FormLabel, FormControl, Input, Button, Box, Center } from "@chakra-ui/react";
+import { FormLabel, FormControl, Input, Button, Box, Flex, VStack, Image, Text } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa';
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,10 +56,12 @@ const LoginForm = () => {
   }
 
   return (
-    <Center h="90vh">
-      <Box maxW="lg" bg="gray.600" rounded="lg" p={10}>
-
-        <Box maxW="md" bg="gray.800" rounded="lg" p={6}>
+    <Flex align="center" justify="center" minH="90vh">
+      <Box p="8 " borderWidth="1px" borderRadius="lg" boxShadow="md">
+        <Flex align="center" justify="space-between">
+          <Image src="/auth.png" alt="Login Image" boxSize="200px" w="25rem" h="35rem" mr="1" display={{base:"none", md:"inherit"}} />
+          <VStack align="stretch" spacing="8" ml={{base:"auto",md:"40"}} mr={{base:"auto",md:"20"}}  bg="gray.900" maxW="md" borderColor="blue" rounded="lg" p={10}>
+        <Box>
           <form onSubmit={handleSubmit}>
             <FormControl mb={4}>
               <FormLabel htmlFor="email">Email</FormLabel>
@@ -68,7 +72,7 @@ const LoginForm = () => {
                 value={email}
                 onChange={handleEmailChange}
                 required
-              />
+                />
             </FormControl>
             <FormControl mb={6}>
               <FormLabel htmlFor="password">Password</FormLabel>
@@ -79,10 +83,10 @@ const LoginForm = () => {
                 value={password}
                 onChange={handlePasswordChange}
                 required
-              />
+                />
             </FormControl>
             {error && <p color="red.500" fontSize="xs" fontStyle="italic">{error}</p>}
-              <Button colorScheme="blue" type="submit">
+              <Button colorScheme="blue" w={"80%"} type="submit">
                 Login
               </Button>
           </form>
@@ -93,8 +97,20 @@ const LoginForm = () => {
             </Link>
           </Box>
         </Box>
-      </Box>
-    </Center>
+        <Flex alignItems={"center"} justifyContent={"center"} my={1} gap={1} w={"full"}>
+						<Box flex={2} h={"1px"} bg={"gray.400"} />
+						<Text mx={1} color={"white"}>
+							OR
+						</Text>
+						<Box flex={2} h={"1px"} bg={"gray.400"} />
+					</Flex>
+    <Button leftIcon={<FaGoogle />} colorScheme="red" size="md" variant="outline">
+              Login with Google
+            </Button>
+                </VStack>
+              </Flex>
+            </Box>
+          </Flex>
   );
 };
 
