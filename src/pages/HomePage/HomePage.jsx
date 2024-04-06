@@ -3,49 +3,73 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Nav from "../../components/Navbar/Nav";
 import Categories from "../../components/Feeds/Categories";
 import { useState, useEffect } from "react";
-import { Box, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Wrap, WrapItem, Button } from '@chakra-ui/react';
+import { ScaleLoader } from 'react-spinners';
+import ShimmerLine from "../../components/Shimmers/ShimmerLines";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
+  const [totalPosts, setTotalPosts] = useState(0);
+
+  const fetchPosts = async (page) => {
+    // setIsLoading(true);
+    try {
+      const response = await fetch(`http://localhost:3001/api/v1/allPost?page=${page}&size=9`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const responsedata = await response.json();
+      console.log('API Response:', responsedata);
+      setPosts((prevPosts) => [...prevPosts, ...(responsedata.data.allPosts || [])]);
+      setTotalPosts(responsedata.data.totalDocs);
+      setIsLoading(false);
+      setIsInitialDataLoaded(true);
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
+    }
+  };
+
+  const loadMore = () => {
+    if (!isLoading) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
-      try {
-        const response = await fetch('http://localhost:3001/api/v1/allPost');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const responsedata = await response.json();
-        console.log('API Response:', responsedata);
-        setPosts(responsedata.data.allPosts || []);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error);
-        setIsLoading(false);
-      }
+      await fetchPosts(currentPage);
     };
-
-    fetchPosts();
-  }, []);
-
+    setTimeout(fetchData, 2000)
+  }, [currentPage]);
   return (
     <>
       <Nav />
-        <Sidebar />
-        <Categories />
+      <Sidebar />
+      <Categories />
       <Box ml={{ base: '0', md: '10rem' }} mt={{ base: '8rem', md: '8rem' }}>
         <Wrap spacing="10" justify="center">
-          {isLoading && <p>Loading posts...</p>}
+          {isLoading && <ScaleLoader
+            color="#5aded7"
+            height={60}
+            radius={10}
+            width={5}
+          />}
           {error && <p>Error fetching posts: {error.message}</p>}
-          {!isLoading && !error && posts.length > 0 && posts.map((post) => (
+          {posts.map((post) => (
             <WrapItem key={post._id}>
               <PostCard postData={post} />
             </WrapItem>
           ))}
         </Wrap>
+        {isInitialDataLoaded && posts.length < totalPosts && (
+          <Button colorScheme="yellow" onClick={loadMore}>Load More</Button>
+        )}
       </Box>
     </>
   );
@@ -59,7 +83,7 @@ function PostCard({ postData }) {
       overflow="hidden"
       boxShadow="md"
       p="4"
-      w="300px" // Adjust width if needed
+      w="300px"
     >
       <h2>{postData.title}</h2>
       <p>Description: {postData.description}</p>
