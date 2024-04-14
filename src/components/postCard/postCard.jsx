@@ -1,47 +1,161 @@
-import { Box } from '@chakra-ui/react';
-
+import { Box, Text, Flex, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useToast } from '@chakra-ui/react';
+import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
 const PostCard = ({ postData }) => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const toast = useToast();
+
+    const openPopup = () => setIsPopupOpen(true);
+    const closePopup = () => setIsPopupOpen(false);
+
+    const handleEdit = async () => {
+        const token = localStorage.getItem('token')
+        try {
+            // eslint-disable-next-line react/prop-types
+            const response = await fetch(`http://localhost:3001/api/v1/updatePost/${postData._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `${token}`
+                },
+                body: JSON.stringify({
+                    // eslint-disable-next-line react/prop-types
+                    title: postData.title,
+                    // eslint-disable-next-line react/prop-types
+                    description: postData.description,
+                }),
+            })
+            const responseData = await response.json();
+            console.log('Edit post response:', responseData);
+        } catch (error) {
+            console.error('Error editing post:', error);
+        }
+        console.log('Edit post:', postData);
+        closePopup();
+    };
+
+    const handleDelete = async () => {
+        const token = localStorage.getItem('token')
+        try {
+            // eslint-disable-next-line react/prop-types
+            const response = await fetch(`http://localhost:3001/api/v1/deletePost/${postData._id}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `${token}`
+                },
+            })
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log('deleted post is', responseData);
+                toast({
+                    title: "Post Deleted",
+                    description: "The post has been successfully deleted.",
+                    status: "success",
+                    duration: 5000,
+                    isClosable: true,
+                });
+            }else if(response.status === 403) {
+                throw new Error('Unauthorized');
+            }else {
+                throw new Error('Failed to delete post');
+            }
+        } catch (error) {
+            console.error('error in deleting post:', error)
+            if(error.message === 'Unauthorized') {
+                toast({
+                    title: "OOPS!",
+                    description: "You are not authorized to delete this post",
+                    status: "error",
+                    duration: 5000,
+                    isClosable: true,
+                });
+            }else {
+                toast({
+                    title: "Error",
+                    description: "Failed to delete the post. Please try again later.",
+                    status: "error",
+                    duration: 5000,
+                    isClosable: true,
+                });
+            }
+        }
+        console.log('Delete post:', postData);
+        closePopup();
+    };
+
     // eslint-disable-next-line react/prop-types
     const imageUrl = postData.fileUrl;
     return (
-    <Box
-        borderWidth="1px"
-        borderRadius="lg"
-        overflow="hidden"
-        boxShadow="md"
-        p="4"
-         w="300px"
-     >
-        {imageUrl && (
-            <Box
-                height="300px"
-                width="100%"
-               overflow="hidden"
-            >
-            <img
-               src={imageUrl}
-                // eslint-disable-next-line react/prop-types
-                alt={postData.title}
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                }}
-             />
-            </Box>
-        )}
-        {/* eslint-disable-next-line react/prop-types */}
-         <h2>{postData.title}</h2>
-         {/* eslint-disable-next-line react/prop-types */}
-         <p>Description: {postData.description}</p>
-         {/* eslint-disable-next-line react/prop-types */}
-         <p>Posted By: {postData.postedBy.firstName} {postData.postedBy.lastName}</p>
-         {/* eslint-disable-next-line react/prop-types */}
-         <p>Sports: {postData.sports}</p>
-         {/* eslint-disable-next-line react/prop-types */}
-         <p>Pincode: {postData.pincode}</p>
-    </Box>
+        <Box
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            boxShadow="md"
+            p="4"
+            w="300px"
+            transition="all 0.3s"
+            _hover={{ transform: "scale(1.05)" }}
+            fontFamily="Nunito, Arial, sans-serif"
+            onClick={openPopup}
+            cursor="pointer"
+        >
+            {imageUrl && (
+                <Box
+                    height="300px"
+                    width="100%"
+                    overflow="hidden"
+                >
+                    <img
+                        src={imageUrl}
+                        // eslint-disable-next-line react/prop-types
+                        alt={postData.title}
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                        }}
+                    />
+                </Box>
+            )}
+            {/*eslint-disable-next-line react/prop-types*/}
+            <Text fontSize="md" fontWeight="bold" mb="2" color="pink.400" lineHeight="short" overflow="hidden" >
+                {/*eslint-disable-next-line react/prop-types*/}
+                {postData.title}
+            </Text>
+            <Text fontSize="sm" color="gray.200" mb="2">
+                {/*eslint-disable-next-line react/prop-types*/}
+                <strong>Description:</strong> {postData.description}
+            </Text>
+            <Flex align="center" color="gray.300" mb="2">
+                <Box mr="2" fontSize="md">Posted By:</Box>
+                {/*eslint-disable-next-line react/prop-types*/}
+                <Text>{postData.postedBy.firstName} {postData.postedBy.lastName}</Text>
+            </Flex>
+            <Text fontSize="sm" color="gray.300" mb="2">
+                {/*eslint-disable-next-line react/prop-types*/}
+                <strong>Sports:</strong> {postData.sports}
+            </Text>
+            <Text fontSize="md" color="gray.300" mb="2">
+                {/*eslint-disable-next-line react/prop-types*/}
+                <strong>Pincode:</strong> {postData.pincode}
+            </Text>
+
+            <Modal isOpen={isPopupOpen} onClose={closePopup}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Post Options</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Text mb="2">What would you like to do with this post?</Text>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={handleEdit}>Edit Post</Button>
+                        <Button colorScheme="red" onClick={handleDelete}>Delete Post</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </Box>
     );
 };
 
