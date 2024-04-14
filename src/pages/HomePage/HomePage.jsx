@@ -5,7 +5,7 @@ import Categories from "../../components/Feeds/Categories";
 import { useState, useEffect } from "react";
 import { Box, Wrap, WrapItem, Button } from '@chakra-ui/react';
 import { ScaleLoader } from 'react-spinners';
-import ShimmerLine from "../../components/Shimmers/ShimmerLines";
+import PostCard from "../../components/postCard/postCard";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -16,7 +16,6 @@ const HomePage = () => {
   const [totalPosts, setTotalPosts] = useState(0);
 
   const fetchPosts = async (page) => {
-    // setIsLoading(true);
     try {
       const response = await fetch(`http://localhost:3001/api/v1/allPost?page=${page}&size=9`);
       if (!response.ok) {
@@ -47,6 +46,7 @@ const HomePage = () => {
     };
     setTimeout(fetchData, 2000)
   }, [currentPage]);
+
   return (
     <>
       <Nav />
@@ -75,23 +75,5 @@ const HomePage = () => {
   );
 };
 
-function PostCard({ postData }) {
-  return (
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      boxShadow="md"
-      p="4"
-      w="300px"
-    >
-      <h2>{postData.title}</h2>
-      <p>Description: {postData.description}</p>
-      <p>Posted By: {postData.postedBy.firstName} {postData.postedBy.lastName}</p>
-      <p>Sports: {postData.sports}</p>
-      <p>Pincode: {postData.pincode}</p>
-    </Box>
-  );
-}
 
 export default HomePage;
