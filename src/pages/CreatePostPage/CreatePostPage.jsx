@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Nav from "../../components/Navbar/Nav";
-import { Textarea, Select, Input, Button, Box, Center,Image } from "@chakra-ui/react";
+import { Textarea, Select, Input, Button, Box, Center, Image, useToast } from "@chakra-ui/react";
 const CreatePostPage = () => {
 
   const [title, setTitle] = useState('');
@@ -10,6 +10,8 @@ const CreatePostPage = () => {
   const [sports, setSports] = useState('');
   const [file, setFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
+
+  const toast = useToast();
 
   function handleTitleChange(event) {
     setTitle(event.target.value)
@@ -58,6 +60,18 @@ const CreatePostPage = () => {
       const responseData = await response.json();
       if (response.ok) {
         console.log('post created successfully', responseData);
+        setImagePreview('');
+        setTitle('');
+        setDescription('');
+        setPincode('');
+        setSports('');
+        toast({
+          title: 'Post created successfully',
+          description: 'Your post has been created sucessfully',
+          status: 'success',
+          duration: 3000,
+          isClosable:true
+        })
       } else {
         console.error('post creation failed', responseData)
       }

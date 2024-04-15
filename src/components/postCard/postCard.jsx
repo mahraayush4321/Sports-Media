@@ -3,7 +3,30 @@ import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
 const PostCard = ({ postData }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    // eslint-disable-next-line react/prop-types
+    const [updateTitle, setupdateTitle] = useState(postData.title);
+    // eslint-disable-next-line react/prop-types
+    const [updateDescription, setupdateDescription] = useState(postData.description);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const toast = useToast();
+
+    const userToken = localStorage.getItem('token');
+
+    const openEditModal = () => {
+        // eslint-disable-next-line react/prop-types
+        if (userToken && userToken === postData.postedBy.token) {
+            setIsEditModalOpen(true);
+        } else {
+            toast({
+                title: "Unauthorized",
+                description: "You are not authorized to edit this post.",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+    }
+    const closeEditModal = () => setIsEditModalOpen(false);
 
     const openPopup = () => setIsPopupOpen(true);
     const closePopup = () => setIsPopupOpen(false);
@@ -19,14 +42,22 @@ const PostCard = ({ postData }) => {
                     Authorization: `${token}`
                 },
                 body: JSON.stringify({
-                    // eslint-disable-next-line react/prop-types
-                    title: postData.title,
-                    // eslint-disable-next-line react/prop-types
-                    description: postData.description,
+                    title: updateTitle,
+                    description: updateDescription,
                 }),
             })
             const responseData = await response.json();
             console.log('Edit post response:', responseData);
+            setupdateTitle('');
+            setupdateDescription('');
+            toast({
+                title: "Post Updated",
+                description: "The post has been successfully updated.",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+            });
+
         } catch (error) {
             console.error('Error editing post:', error);
         }
@@ -54,14 +85,14 @@ const PostCard = ({ postData }) => {
                     duration: 5000,
                     isClosable: true,
                 });
-            }else if(response.status === 403) {
+            } else if (response.status === 403) {
                 throw new Error('Unauthorized');
-            }else {
+            } else {
                 throw new Error('Failed to delete post');
             }
         } catch (error) {
             console.error('error in deleting post:', error)
-            if(error.message === 'Unauthorized') {
+            if (error.message === 'Unauthorized') {
                 toast({
                     title: "OOPS!",
                     description: "You are not authorized to delete this post",
@@ -69,7 +100,7 @@ const PostCard = ({ postData }) => {
                     duration: 5000,
                     isClosable: true,
                 });
-            }else {
+            } else {
                 toast({
                     title: "Error",
                     description: "Failed to delete the post. Please try again later.",
@@ -150,8 +181,35 @@ const PostCard = ({ postData }) => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={handleEdit}>Edit Post</Button>
+                        <Button colorScheme="blue" mr={3} onClick={openEditModal}>Edit Post</Button>
                         <Button colorScheme="red" onClick={handleDelete}>Delete Post</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+
+            <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
+                <ModalOverlay />
+                <ModalContent >
+                    <ModalHeader>Edit Post</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Text mb="3">Edit Title:</Text>
+                        <input
+                            type="text"
+                            value={updateTitle}
+                            onChange={(e) => setupdateTitle(e.target.value)}
+                            style={{ backgroundColor: 'white', color: 'black', padding: '8px', borderRadius: '4px' }}
+                        />
+                        <Text mt="5" mb="5" >Edit Description:</Text>
+                        <input
+                            value={updateDescription}
+                            onChange={(e) => setupdateDescription(e.target.value)}
+                            style={{ backgroundColor: 'white', color: 'black', padding: '8px', borderRadius: '4px', fontFamily: 'Arial, sans-serif', fontSize: '14px' }}
+                        />
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={handleEdit}>Save Changes</Button>
+                        <Button colorScheme="gray" onClick={closeEditModal}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
