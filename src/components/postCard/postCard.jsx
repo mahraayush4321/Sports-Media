@@ -10,22 +10,7 @@ const PostCard = ({ postData }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const toast = useToast();
 
-    const userToken = localStorage.getItem('token');
-
-    const openEditModal = () => {
-        // eslint-disable-next-line react/prop-types
-        if (userToken && userToken === postData.postedBy.token) {
-            setIsEditModalOpen(true);
-        } else {
-            toast({
-                title: "Unauthorized",
-                description: "You are not authorized to edit this post.",
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-            });
-        }
-    }
+    const openEditModal = () => setIsEditModalOpen(true);
     const closeEditModal = () => setIsEditModalOpen(false);
 
     const openPopup = () => setIsPopupOpen(true);
@@ -57,7 +42,6 @@ const PostCard = ({ postData }) => {
                 duration: 5000,
                 isClosable: true,
             });
-
         } catch (error) {
             console.error('Error editing post:', error);
         }
@@ -85,14 +69,14 @@ const PostCard = ({ postData }) => {
                     duration: 5000,
                     isClosable: true,
                 });
-            } else if (response.status === 403) {
+            }else if(response.status === 403) {
                 throw new Error('Unauthorized');
-            } else {
+            }else {
                 throw new Error('Failed to delete post');
             }
         } catch (error) {
             console.error('error in deleting post:', error)
-            if (error.message === 'Unauthorized') {
+            if(error.message === 'Unauthorized') {
                 toast({
                     title: "OOPS!",
                     description: "You are not authorized to delete this post",
@@ -100,7 +84,7 @@ const PostCard = ({ postData }) => {
                     duration: 5000,
                     isClosable: true,
                 });
-            } else {
+            }else {
                 toast({
                     title: "Error",
                     description: "Failed to delete the post. Please try again later.",
@@ -204,7 +188,7 @@ const PostCard = ({ postData }) => {
                         <input
                             value={updateDescription}
                             onChange={(e) => setupdateDescription(e.target.value)}
-                            style={{ backgroundColor: 'white', color: 'black', padding: '8px', borderRadius: '4px', fontFamily: 'Arial, sans-serif', fontSize: '14px' }}
+                            style={{ backgroundColor: 'white', color: 'black', padding: '8px', borderRadius: '4px',  fontFamily: 'Arial, sans-serif', fontSize: '14px' }}
                         />
                     </ModalBody>
                     <ModalFooter>

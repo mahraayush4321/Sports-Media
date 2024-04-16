@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Box, Wrap, WrapItem, Button } from '@chakra-ui/react';
 import { ScaleLoader } from 'react-spinners';
 import PostCard from "../../components/postCard/postCard";
+import { getSportByCategory } from "../../api";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -14,6 +15,7 @@ const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isInitialDataLoaded, setIsInitialDataLoaded] = useState(false);
   const [totalPosts, setTotalPosts] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const fetchPosts = async (page) => {
     try {
@@ -33,6 +35,20 @@ const HomePage = () => {
     }
   };
 
+  const fetchPostsByCategory = async (category) => {
+    try {
+        setIsLoading(true);
+        setSelectedCategory(category);
+        const response = await getSportByCategory(category);
+        setPosts(response.data.posts);
+        setIsLoading(false);
+        setIsInitialDataLoaded(true);
+    } catch (error) {
+        setError(error);
+        setIsLoading(false);
+    }
+};
+
   const loadMore = () => {
     if (!isLoading) {
       setCurrentPage(currentPage + 1);
@@ -51,7 +67,7 @@ const HomePage = () => {
     <>
       <Nav />
       <Sidebar />
-      <Categories />
+      <Categories fetchPostsByCategory={fetchPostsByCategory} />
       <Box ml={{ base: '0', md: '10rem' }} mt={{ base: '8rem', md: '8rem' }}>
         <Wrap spacing="10" justify="center">
           {isLoading && <ScaleLoader
