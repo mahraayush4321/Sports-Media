@@ -13,8 +13,7 @@ const Home = () => {
 			display={{ base: "block", md: "none" }}
 		>
 			<Link
-						bg={{base:"black", md:"inherit"}}
-
+				bg={{ base: "black", md: "inherit" }}
 				display={"flex"}
 				to={"/"}
 				as={RouterLink}

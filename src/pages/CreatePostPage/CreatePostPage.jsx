@@ -1,13 +1,17 @@
 import { useState } from 'react'
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Nav from "../../components/Navbar/Nav";
-import { Textarea, Select, Input, Button, Box, Center } from "@chakra-ui/react";
+import { Textarea, Select, Input, Button, Box, Center, Image, useToast } from "@chakra-ui/react";
 const CreatePostPage = () => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [pincode, setPincode] = useState('');
   const [sports, setSports] = useState('');
+  const [file, setFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+
+  const toast = useToast();
 
   function handleTitleChange(event) {
     setTitle(event.target.value)
@@ -25,22 +29,49 @@ const CreatePostPage = () => {
     setSports(event.target.value)
   }
 
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+    if (selectedFile) {
+      const previewURL = URL.createObjectURL(selectedFile);
+      setImagePreview(previewURL);
+    }
+  }
+
 
   const handlePostSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('pincode', pincode);
+    formData.append('sports', sports);
+    formData.append('file', file);
     try {
       const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:3001/api/v1/post', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `${token}`
         },
-        body: JSON.stringify({ title, description, pincode, sports }),
+        body: formData,
       });
       const responseData = await response.json();
       if (response.ok) {
         console.log('post created successfully', responseData);
+        setImagePreview('');
+        setTitle('');
+        setDescription('');
+        setPincode('');
+        setSports('');
+        toast({
+          title: 'Post created successfully',
+          description: 'Your post has been created sucessfully',
+          status: 'success',
+          duration: 3000,
+          isClosable:true
+        })
       } else {
         console.error('post creation failed', responseData)
       }
@@ -51,13 +82,14 @@ const CreatePostPage = () => {
       title,
       description,
       pincode,
-      sports
+      sports,
+      file
     })
   }
 
   return (
     <>
-        <Nav />
+      <Nav />
       <>
         <Sidebar />
         <Center h="80vh">
@@ -68,7 +100,14 @@ const CreatePostPage = () => {
               name="avatar"
               pt={1}
               accept="image/png, image/jpeg"
+              onChange={handleFileChange}
+              required
             />
+            {imagePreview && (
+              <Box mt={5}>
+                <Image src={imagePreview} alt="Preview" />
+              </Box>
+            )}
             <Input placeholder="Pin Code" mt={5} value={pincode} onChange={handlePinCodeChange} />
 
             <Input placeholder="Title" mt={5} value={title} onChange={handleTitleChange} />
