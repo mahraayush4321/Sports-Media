@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FormLabel, FormControl, Input, Button, Box, Flex, VStack, Image} from "@chakra-ui/react";
+import Auth from '../../assets/auth.png';
+
 const SignupForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -62,12 +64,12 @@ const SignupForm = () => {
   };
 
   return (
-    <Flex align="center" justify="center" minH="90vh">
-    <Box p="8 " borderWidth="1px" borderRadius="lg" boxShadow="md">
-      <Flex align="center" justify="space-between">
-        <Image src="/auth.png" alt="Login Image" boxSize="200px" w="25rem" h="35rem" mr="1" display={{base:"none", md:"inherit"}} />
-        <VStack align="stretch" spacing="8" ml={{base:"auto",md:"40"}} mr={{base:"auto",md:"20"}}  bg="gray.900" maxW="md" borderColor="blue" rounded="lg" p={{base:"6", md:"8"}}>
-    <Box maxW="md" rounded="lg" p={2}>
+    <Flex  >
+    <Box p="2" borderWidth="0px" borderRadius="lg" mt={-3} boxShadow="md" w="max-content">
+      <Flex >
+        <Image src={Auth} alt="Login Image" boxSize="100px" mr={10} w="46rem" h="90vh" borderLeftRadius={5} display={{base:"none", md:"inherit"}} />
+        <VStack align="stretch" spacing="8" mt={6} maxW="lg" borderColor="blue" rounded="lg" p={{base:"6", md:"8"}}>
+    <Box w="20rem" rounded="lg" ml={{base:"-10px", md:"5rem"}} p={2}>
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
           <FormLabel htmlFor="firstName">First Name</FormLabel>
@@ -77,6 +79,7 @@ const SignupForm = () => {
             placeholder="Your first name"
             value={firstName}
             onChange={handleFirstNameChange}
+            borderColor="white"
             required
             />
         </FormControl>
@@ -87,6 +90,7 @@ const SignupForm = () => {
             type="text"
             placeholder="Your last name"
             value={lastName}
+            borderColor="white"
             onChange={handleLastNameChange}
             required
             />
@@ -99,6 +103,7 @@ const SignupForm = () => {
             placeholder="Your email"
             value={email}
             onChange={handleEmailChange}
+            borderColor="white"
             required
             />
         </FormControl>
@@ -110,6 +115,7 @@ const SignupForm = () => {
             placeholder="Your password"
             value={password}
             onChange={handlePasswordChange}
+            borderColor="white"
             required
             />
         </FormControl>
@@ -117,7 +123,7 @@ const SignupForm = () => {
           Submit
         </Button>
       </form>
-      <Box mt={4} textAlign="center">
+      <Box mt={6} textAlign="center">
         <p>Already have an account? </p>
         <Link to='/login' style={{ color: 'teal' }}>
           Login here
