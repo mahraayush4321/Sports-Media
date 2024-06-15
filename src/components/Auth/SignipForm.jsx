@@ -42,8 +42,8 @@ const SignupForm = () => {
       });
       const responseData = await response.json();
       if (response.ok) {
-        console.log('User created successfully:', responseData);
-        window.location.href = '/login'
+        alert('User created successfully:', responseData);
+        // window.location.href = '/login'
         // setFirstName('');
         // setLastName('');
         // setEmail('');
