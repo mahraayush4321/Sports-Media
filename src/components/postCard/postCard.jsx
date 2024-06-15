@@ -20,7 +20,7 @@ const PostCard = ({ postData }) => {
         const token = localStorage.getItem('token')
         try {
             // eslint-disable-next-line react/prop-types
-            const response = await fetch(`http://localhost:3001/api/v1/updatePost/${postData._id}`, {
+            const response = await fetch(`https://s1backend1.onrender.com/api/v1/updatePost/${postData._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const PostCard = ({ postData }) => {
         const token = localStorage.getItem('token')
         try {
             // eslint-disable-next-line react/prop-types
-            const response = await fetch(`http://localhost:3001/api/v1/deletePost/${postData._id}`, {
+            const response = await fetch(`https://s1backend1.onrender.com/api/v1/deletePost/${postData._id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `${token}`

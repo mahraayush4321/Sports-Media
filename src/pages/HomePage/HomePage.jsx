@@ -19,7 +19,7 @@ const HomePage = () => {
 
   const fetchPosts = async (page) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/v1/allPost?page=${page}&size=9`);
+      const response = await fetch(`https://s1backend1.onrender.com/api/v1/allPost?page=${page}&size=9`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
