@@ -99,7 +99,7 @@ const CreatePostPage = () => {
               id="avatar"
               name="avatar"
               pt={1}
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/gif"
               onChange={handleFileChange}
               required
             />
