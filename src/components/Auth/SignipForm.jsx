@@ -28,7 +28,7 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/api/v1/users', {
+      const response = await fetch('https://s1backend1.onrender.com/api/v1/users', {
         method:'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,8 +42,8 @@ const SignupForm = () => {
       });
       const responseData = await response.json();
       if (response.ok) {
-        console.log('User created successfully:', responseData);
-        window.location.href = '/login'
+        alert('User created successfully:', responseData);
+        // window.location.href = '/login'
         // setFirstName('');
         // setLastName('');
         // setEmail('');

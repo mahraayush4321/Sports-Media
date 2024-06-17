@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const fetchPosts = async () => {
     try {
       const token = localStorage.getItem('token')
-      const response = await fetch('http://localhost:3001/api/v1/posts', {
+      const response = await fetch('https://s1backend1.onrender.com/api/v1/posts', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

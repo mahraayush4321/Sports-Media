@@ -1,8 +1,8 @@
-const BASE_URL = 'http://localhost:3001'; 
+// const BASE_URL = 'https://s1backend1.onrender.com/'; 
 
 export const getSportByCategory = async (category) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/v1/posts/category/${category}`);
+    const response = await fetch(`https://s1backend1.onrender.com/api/v1/posts/category/${category}`);
     if (!response.ok) {
       throw new Error('Failed to fetch posts by category');
     }

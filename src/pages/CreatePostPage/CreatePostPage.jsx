@@ -50,7 +50,7 @@ const CreatePostPage = () => {
     formData.append('file', file);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/v1/post', {
+      const response = await fetch('https://s1backend1.onrender.com/api/v1/post', {
         method: 'POST',
         headers: {
           'Authorization': `${token}`
@@ -99,7 +99,7 @@ const CreatePostPage = () => {
               id="avatar"
               name="avatar"
               pt={1}
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/gif"
               onChange={handleFileChange}
               required
             />
