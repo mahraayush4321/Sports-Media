@@ -7,7 +7,9 @@ const ChatPage = () => {
     <Nav />
     <>
       <Sidebar />
+      <div style={{ marginTop:"5rem"}}>
       Chats will be organized here
+      </div>
     </>
   </>
   )

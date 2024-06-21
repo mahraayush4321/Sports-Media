@@ -12,10 +12,22 @@ import {
 } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import { Search2Icon } from "@chakra-ui/icons";
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 const Nav = () => {
+  const navigate = useNavigate();
+  let isLogin = useState(false);
+  const handleLogout = () => {
+    try {
+      navigate("/login");
+      alert("Are You Sure To Logout")
+      localStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <Box position="fixed" top={0} left={0} right={0} zIndex={0} boxShadow="md">
+    <Box position="fixed" top={0} left={0} right={0} zIndex={99} boxShadow="md">
     <Container maxW={"100%"}>
 
     <Flex
@@ -24,12 +36,12 @@ const Nav = () => {
       justify="space-between"
       padding="0.5rem"
       // mt={-5}
-      // bg="gray.900"
+      bg="gray.900"
       borderRadius={10}
       color="white"
       >
       {/* Logo */}
-      <Link to="/">
+      <Link to="/home">
       <Box>
         <Image src="/logo.png" alt="Logo" boxSize="50px" mr={12} />
       </Box>
@@ -57,12 +69,17 @@ const Nav = () => {
           </InputGroup>
 
       {/* Login Button */}
+      {isLogin ? (
+        <Button onClick={handleLogout} colorScheme="white" paddingStart={5} paddingEnd={5} variant="outline">Logout</Button>
+      ):(
+      
       <Link to="/login">
       <Button colorScheme="white" variant="outline">
         Login
       </Button>
       </Link>
-                </Flex>
+      )}
+        </Flex>
     </Flex>
     </Container>
         </Box>

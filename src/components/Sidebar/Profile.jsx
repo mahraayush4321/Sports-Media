@@ -7,11 +7,12 @@ const ProfileLink = () => {
 			hasArrow
 			label={"Profile"}
 			placement='right'
-			ml={1}
+			// ml={1}
 			openDelay={500}
 			display={{ base: "block", md: "none" }}
-		>
+			>
 			<Link
+			bg={{base:"black", md:"inherit"}}
 				display={"flex"}
 				to="/profile"
 				as={RouterLink}
@@ -19,8 +20,8 @@ const ProfileLink = () => {
 				gap={4}
 				_hover={{ bg: "whiteAlpha.400" }}
 				borderRadius={6}
-				p={5}
-				w={{ base: 10, md: "full" }}
+				p={4}
+				w={{ base: 20, md: "full" }}
 				justifyContent={{ base: "center", md: "flex-start" }}
 			>
 				<Avatar size={"sm"} />
