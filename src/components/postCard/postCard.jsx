@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useToast } from '@chakra-ui/react';
+import { Box, Text, Flex, Button, Modal, ModalOverlay,Tag, TagLabel,Avatar,Badge, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 // eslint-disable-next-line react/prop-types
 const PostCard = ({ postData }) => {
@@ -102,18 +102,36 @@ const PostCard = ({ postData }) => {
     const imageUrl = postData.fileUrl;
     return (
         <Box
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-            boxShadow="md"
-            p="4"
-            w="300px"
-            transition="all 0.3s"
-            _hover={{ transform: "scale(1.05)" }}
-            fontFamily="Nunito, Arial, sans-serif"
-            onClick={openPopup}
-            cursor="pointer"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        boxShadow="md"
+        p="4"
+        w="300px"
+        transition="all 0.3s"
+        _hover={{ transform: "scale(1.05)" }}
+        fontFamily="Nunito, Arial, sans-serif"
+        onClick={openPopup}
+        cursor="pointer"
         >
+        <Flex mb='5'>
+<Avatar size='md' src='https://bit.ly/sage-adebayo' />
+<Box ml='3'>
+<Text fontWeight='bold'>
+            {/*eslint-disable-next-line react/prop-types*/}
+{postData.postedBy.firstName} {postData.postedBy.lastName}
+</Text>
+  <Badge mr='12' colorScheme='green'>
+            {/*eslint-disable-next-line react/prop-types*/}
+  {postData.pincode}
+  </Badge>
+{/* <Text fontSize='sm'>UI Engineer</Text> */}
+</Box>
+                        <Tag size='sm' ml='5' mt='2' height='20px' colorScheme='blue'>
+                            {/*eslint-disable-next-line react/prop-types*/}
+              <TagLabel>{postData.sports}</TagLabel>
+            </Tag>
+</Flex>
             {imageUrl && (
                 <Box
                     height="300px"
@@ -133,27 +151,20 @@ const PostCard = ({ postData }) => {
                 </Box>
             )}
             {/*eslint-disable-next-line react/prop-types*/}
-            <Text fontSize="md" fontWeight="bold" mb="2" color="pink.400" lineHeight="short" overflow="hidden" >
+            <Text fontSize="md" mt='2' fontWeight="bold" mb="2" color="pink.400" lineHeight="short" overflow="hidden" >
                 {/*eslint-disable-next-line react/prop-types*/}
                 {postData.title}
             </Text>
             <Text fontSize="sm" color="gray.200" mb="2">
                 {/*eslint-disable-next-line react/prop-types*/}
-                <strong>Description:</strong> {postData.description}
+                {postData.description}
             </Text>
-            <Flex align="center" color="gray.300" mb="2">
-                <Box mr="2" fontSize="md">Posted By:</Box>
-                {/*eslint-disable-next-line react/prop-types*/}
-                <Text>{postData.postedBy.firstName} {postData.postedBy.lastName}</Text>
-            </Flex>
-            <Text fontSize="sm" color="gray.300" mb="2">
-                {/*eslint-disable-next-line react/prop-types*/}
+            
+            
+            {/* <Text fontSize="sm" color="gray.300" mb="2">
                 <strong>Sports:</strong> {postData.sports}
-            </Text>
-            <Text fontSize="md" color="gray.300" mb="2">
-                {/*eslint-disable-next-line react/prop-types*/}
-                <strong>Pincode:</strong> {postData.pincode}
-            </Text>
+            </Text> */}
+           
 
             <Modal isOpen={isPopupOpen} onClose={closePopup}>
                 <ModalOverlay />
