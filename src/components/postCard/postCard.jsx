@@ -115,7 +115,7 @@ const PostCard = ({ postData }) => {
         cursor="pointer"
         >
         <Flex mb='5'>
-<Avatar size='md' src='https://bit.ly/sage-adebayo' />
+<Avatar zIndex={-999} size='md' src='https://bit.ly/sage-adebayo' />
 <Box ml='3'>
 <Text fontWeight='bold'>
             {/*eslint-disable-next-line react/prop-types*/}
