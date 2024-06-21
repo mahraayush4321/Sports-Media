@@ -68,7 +68,7 @@ const HomePage = () => {
       <Nav />
       <Sidebar />
       <Categories fetchPostsByCategory={fetchPostsByCategory} />
-      <Box ml={{ base: '0', md: '10rem' }} mt={{ base: '8rem', md: '8rem' }}>
+      <Box ml={{ base: '0', md: '10rem' }} mt={{ base: '8rem', md: '9rem' }}>
         <Wrap spacing="10" justify="center">
           {isLoading && <ScaleLoader
             color="#5aded7"

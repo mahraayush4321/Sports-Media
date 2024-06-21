@@ -63,13 +63,14 @@ const LoginForm = () => {
   };
 
   if (isVerified) {
-    return (window.location.href = "/");
+    return (window.location.href = "/home");
   }
 
   return (
     <Flex>
       <Box
-        p="2"
+        p={{ base: "none", md: "2" }}
+        m={'auto'}
         borderWidth="0px"
         borderRadius="lg"
         mt={-3}
@@ -99,7 +100,7 @@ const LoginForm = () => {
             <Box
               w="20rem"
               rounded="lg"
-              ml={{ base: "-10px", md: "5rem" }}
+              ml={{ base: "-30px", md: "5rem" }}
               p={2}
             >
               <form onSubmit={handleSubmit}>
@@ -136,7 +137,7 @@ const LoginForm = () => {
                   Login
                 </Button>
               </form>
-              <Box mt={6} ml={{ base: "-10px", md: "1rem" }} textAlign="center">
+              <Box mt={6} ml={{ base: "0", md: "1rem" }} textAlign="center">
                 <p>Not have an account? </p>
                 <Link to="/register" style={{ color: "teal" }}>
                   Register here
@@ -146,7 +147,7 @@ const LoginForm = () => {
             <Flex
               alignItems={"center"}
               justifyContent={"center"}
-              ml={{ base: "-10px", md: "6rem" }}
+              ml={{ base: "-30px", md: "6rem" }}
               my={2}
               gap={1}
               maxW="sm"
@@ -161,7 +162,7 @@ const LoginForm = () => {
               leftIcon={<FaGoogle />}
               colorScheme="red"
               maxW="sm"
-              ml={{ base: "-10px", md: "7rem" }}
+              ml={{ base: "-30px", md: "7rem" }}
               variant="outline"
             >
               Login with Google

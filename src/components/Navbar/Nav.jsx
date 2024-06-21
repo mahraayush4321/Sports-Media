@@ -27,7 +27,7 @@ const Nav = () => {
     }
   };
   return (
-    <Box position="fixed" top={0} left={0} right={0} zIndex={0} boxShadow="md">
+    <Box position="fixed" top={0} left={0} right={0} zIndex={99} boxShadow="md">
     <Container maxW={"100%"}>
 
     <Flex
@@ -41,7 +41,7 @@ const Nav = () => {
       color="white"
       >
       {/* Logo */}
-      <Link to="/">
+      <Link to="/home">
       <Box>
         <Image src="/logo.png" alt="Logo" boxSize="50px" mr={12} />
       </Box>

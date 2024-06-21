@@ -8,10 +8,10 @@ import { FaChess } from "react-icons/fa";
 import { MdSportsKabaddi } from "react-icons/md";
 import { GiCycling } from "react-icons/gi";
 import { SiCodingninjas } from "react-icons/si";
-import { TiThSmallOutline} from "react-icons/ti";
+// import { TiThSmallOutline} from "react-icons/ti";
 
 const iconList = [
-  TiThSmallOutline,
+  // TiThSmallOutline,
   MdSportsCricket,
   IoMdFootball,
   FaVolleyballBall,
@@ -50,7 +50,7 @@ const Categories = ({ fetchPostsByCategory }) => {
 
   return (
     <Box position="fixed" top={{base:"0", md:"3.5rem"}}  height={{base:"1rem", md:"auto"}} left={{base:"0", md:"8rem"}} width={{base:"auto", md:"80%"}} right={{base:"0", md:"auto"}}  zIndex={999}>
-      <HStack spacing={2} overflowX="auto" ml={{ base: '2', md: '60' }} my={10} height={{base:"6rem", md:"auto"}} marginTop={{base:"3rem" ,md:"auto"}} zIndex={999}>
+      <HStack spacing={2} backgroundColor={"#121212"} overflowX="auto" ml={{ base: '0', md: '220px' }} my={10} height={{base:"4rem", md:"6rem"}} marginTop={{base:"4rem" ,md:"10px"}} zIndex={999}>
         {isDesktop &&
           buttonList.map((buttonName, index) => (
             <Button key={index} bg={selectedCategory === buttonName ? "blue.500" : "gray.800"} fontWeight="medium" mx={2} px={2} mt={6} onClick={() => handleClick(buttonName)}>
