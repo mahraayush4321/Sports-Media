@@ -41,7 +41,7 @@ const Nav = () => {
       color="white"
       >
       {/* Logo */}
-      <Link to="/home">
+      <Link to="/">
       <Box>
         <Image src="/logo.png" alt="Logo" boxSize="50px" mr={12} />
       </Box>

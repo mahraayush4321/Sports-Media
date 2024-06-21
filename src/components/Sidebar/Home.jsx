@@ -15,7 +15,7 @@ const Home = () => {
 			<Link
 				bg={{ base: "black", md: "inherit" }}
 				display={"flex"}
-				to={"/home"}
+				to={"/"}
 				as={RouterLink}
 				alignItems={"center"}
 				gap={4}
