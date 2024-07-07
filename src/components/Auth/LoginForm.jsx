@@ -63,7 +63,7 @@ const LoginForm = () => {
   };
 
   if (isVerified) {
-    return (window.location.href = "/home");
+    return (window.location.href = "/");
   }
 
   return (
