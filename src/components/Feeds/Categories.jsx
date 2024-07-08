@@ -1,4 +1,4 @@
-import { HStack, Button, useBreakpointValue, Box } from '@chakra-ui/react';
+import { HStack, Button, useBreakpointValue, Box } from "@chakra-ui/react";
 import { MdSportsCricket } from "react-icons/md";
 import { IoMdFootball } from "react-icons/io";
 import { FaVolleyballBall } from "react-icons/fa";
@@ -20,7 +20,6 @@ const iconList = [
   FaChess,
   MdSportsKabaddi,
   GiCycling,
-  SiCodingninjas
 ];
 
 const buttonList = [
@@ -31,45 +30,81 @@ const buttonList = [
   "basketball",
   "TableTennis",
   "ArmWrestling",
-  "chess"
+  "chess",
 ];
 
-import { useState } from 'react';
+import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const Categories = ({ fetchPostsByCategory }) => {
-    const isDesktop = useBreakpointValue({ base: false, lg: true });
-    const isMobile = useBreakpointValue({ base: true, lg: false });
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const handleClick = async (category) => {
-      setSelectedCategory(category);
-      await fetchPostsByCategory(category);
+  const handleClick = async (category) => {
+    setSelectedCategory(category);
+    await fetchPostsByCategory(category);
   };
 
   return (
-    <Box position="fixed" top={{base:"0", md:"3.5rem"}}  height={{base:"1rem", md:"auto"}} left={{base:"0", md:"8rem"}} width={{base:"auto", md:"80%"}} right={{base:"0", md:"auto"}}  zIndex={999}>
-      <HStack spacing={2} backgroundColor={"#121212"} overflowX="auto" ml={{ base: '0', md: '220px' }} my={10} height={{base:"4rem", md:"6rem"}} marginTop={{base:"4rem" ,md:"10px"}} zIndex={999}>
+    <Box
+      position="fixed"
+      top={{ base: "0", md: "3.5rem" }}
+      height={{ base: "1rem", md: "auto" }}
+      left={{ base: "0", md: "8rem" }}
+      width={{ base: "auto", md: "80%" }}
+      right={{ base: "0", md: "auto" }}
+      zIndex={999}
+    >
+      <HStack
+        spacing={2}
+        backgroundColor={"#121212"}
+        overflowX="auto"
+        ml={{ base: "0", md: "220px" }}
+        my={10}
+        height={{ base: "4rem", md: "6rem" }}
+        marginTop={{ base: "4rem", md: "10px" }}
+        zIndex={999}
+      >
         {isDesktop &&
           buttonList.map((buttonName, index) => (
-            <Button key={index} bg={selectedCategory === buttonName ? "blue.500" : "gray.800"} fontWeight="medium" mx={2} px={2} mt={6} onClick={() => handleClick(buttonName)}>
+            <Button
+              key={index}
+              bg={selectedCategory === buttonName ? "blue.500" : "gray.800"}
+              fontWeight="medium"
+              mx={2}
+              px={2}
+              mt={6}
+              onClick={() => handleClick(buttonName)}
+            >
               {buttonName}
             </Button>
           ))}
         {isMobile &&
           iconList.map((IconComponent, index) => (
-            <Button key={index} bg={selectedCategory === buttonList[index] ? "blue.500" : "gray.800"} fontWeight="medium" mx={2} px={2} mt={5} onClick={() => handleClick(buttonList[index])}>
+            <Button
+              key={index}
+              bg={
+                selectedCategory === buttonList[index] ? "blue.500" : "gray.800"
+              }
+              fontWeight="medium"
+              mx={2}
+              px={2}
+              mt={5}
+              onClick={() => handleClick(buttonList[index])}
+            >
               <IconComponent
                 size={isDesktop ? 24 : 36}
-                color={selectedCategory === buttonList[index] ? "white" : "gray.800"}
-                display={isDesktop ? 'none' : 'block'}
+                color={
+                  selectedCategory === buttonList[index] ? "white" : "gray.800"
+                }
+                display={isDesktop ? "none" : "block"}
               />
             </Button>
           ))}
       </HStack>
     </Box>
   );
-}
+};
 
 export default Categories;
