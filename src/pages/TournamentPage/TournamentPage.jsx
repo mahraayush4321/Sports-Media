@@ -4,13 +4,12 @@ import Nav from "../../components/Navbar/Nav";
 const TournamentPage = () => {
   return (
     <>
-    <Nav />
-    <>
-      <Sidebar />
-      Tournaments will be organized here
+      <Nav />
+      <>
+        <Sidebar />
+      </>
     </>
-  </>
-  )
-}
+  );
+};
 
-export default TournamentPage
+export default TournamentPage;
