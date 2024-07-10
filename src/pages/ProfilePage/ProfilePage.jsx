@@ -42,7 +42,7 @@ const ProfilePage = () => {
             <ProfileHeader />
           </Flex>
           <Flex
-            px={{ base: 2, sm: 4 }}
+            // px={{ base: 2, sm: 4 }}
             maxW={"full"}
             mx={"auto"}
             borderTop={"1px solid"}
@@ -51,8 +51,8 @@ const ProfilePage = () => {
           >
             <Box display="flex" justifyContent="center" marginTop="1rem">
               <Box className="container" maxW="1000px">
-                <Text as="h1" mb='2rem' textAlign="center">My Posts</Text>
-                <SimpleGrid columns={{ base: 1, md: 3 }} spacing="20px">
+                <Text as="h1" mb='2rem'  textAlign="center">My Posts</Text>
+                <SimpleGrid ml='-3' columns={{ base: 1, md: 3 }} spacing="20px">
                   {posts.map(post => (
                     <PostCard key={post._id} postData={post} />
                   ))}
