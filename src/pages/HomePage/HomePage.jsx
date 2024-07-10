@@ -86,7 +86,7 @@ const HomePage = () => {
           ))}
         </Wrap>
         {isInitialDataLoaded && posts.length < totalPosts && (
-          <Button colorScheme="white" onClick={loadMore}>
+          <Button colorScheme="blue" mt='3' onClick={loadMore}>
             Load More
           </Button>
         )}
