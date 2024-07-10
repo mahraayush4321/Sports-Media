@@ -5,13 +5,26 @@ import {
   Flex,
   Text,
   VStack,
-  useDisclosure,
+  Textarea,
+  // useDisclosure,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  ModalHeader,
+  ModalFooter,
 } from "@chakra-ui/react";
-import EditProfile from "./EditProfile";
+// import EditProfile from "./EditProfile";
 import Auth from "../../assets/auth.png";
+import { useState } from 'react';
+
 
 const ProfileHeader = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
   return (
     <Flex
       gap={{ base: 4, sm: 10 }}
@@ -42,7 +55,7 @@ const ProfileHeader = () => {
               color={"black"}
               _hover={{ bg: "whiteAlpha.800" }}
               size={{ base: "xs", md: "sm" }}
-              onClick={onOpen}
+              onClick={openPopup}
             >
               Edit Profile
             </Button>
@@ -64,9 +77,35 @@ const ProfileHeader = () => {
         </Flex>
         <Text fontSize={"sm"}>Bio About the USER</Text>
       </VStack>
-      {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
+      {/* {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />} */}
+      <Modal isOpen={isPopupOpen} onClose={closePopup}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Edit Profile</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Text mb='3'>Profile Photo</Text>
+                      <input type="file" id="img" name="img" accept="image/*" />
+                    <Text mb="3" mt="5">Name</Text>
+                        <input
+                            type="text"
+                            style={{ backgroundColor: 'white',width: '100%', color: 'black', padding: '8px', borderRadius: '4px' }}
+                        />
+                        <Text mt="5" mb="3" >Bio</Text>
+                        <Textarea
+                        style={{ backgroundColor: 'white',width: '100%', color: 'black', padding: '8px', borderRadius: '4px',  fontFamily: 'Arial, sans-serif', fontSize: '14px' }}
+                         placeholder='Edit Your Bio' />
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button type="submit" colorScheme="blue" mr={3} >Update</Button>
+                        <Button colorScheme="red" >Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
     </Flex>
   );
 };
 
 export default ProfileHeader;
+
