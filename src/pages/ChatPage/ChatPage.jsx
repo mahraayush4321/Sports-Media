@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Flex, Box, Heading, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure, Button } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { Flex,Text, Box, Heading, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure, Button } from '@chakra-ui/react';
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Nav from "../../components/Navbar/Nav";
 import Chat from '../../components/chat/Chat';
@@ -21,7 +21,8 @@ const ChatPage = () => {
       <Sidebar />
       <Flex direction="column" alignItems="center">
         <Heading size="md" mb="4">Global Chat</Heading>
-        <Box bg="grey.500" p="4" borderRadius="md" maxW="900px" w="100%">
+        <Box mt='5' bg="grey.500" p="4" borderRadius="md" maxW="900px" w="100%">
+          <Text mb='2' color="cyan.200" fontSize='large' fontWeight='500'>Global Chat</Text>
           <Chat />
         </Box>
       </Flex>
