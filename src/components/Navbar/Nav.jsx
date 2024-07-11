@@ -72,7 +72,7 @@ const Nav = ({ setPosts }) => {
           {/* Logo */}
           <Link to="/">
             <Box>
-              <Image src="/logo.png" alt="Logo" boxSize="50px" mr={12} />
+              <Image src="/logo2.png" alt="Logo" boxSize="50px" mr={12} />
             </Box>
           </Link>
 
